@@ -1,12 +1,8 @@
 package NewProject;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 
 public class Serialization {
     public static void main(String[] args) throws IOException {
@@ -18,9 +14,9 @@ public class Serialization {
             String jsonResult = new ObjectMapper().writeValueAsString(cat);
             String jsonResult1 = new ObjectMapper().writeValueAsString(cat1);
             String jsonResult2 = new ObjectMapper().writeValueAsString(cat2);
-            os.writeObject(cat);
-            os.writeObject(cat1);
-            os.writeObject(cat2);
+            os.writeObject(jsonResult);
+            os.writeObject(jsonResult1);
+            os.writeObject(jsonResult2);
             os.close();
             fs.close();
         } catch (FileNotFoundException e) {
