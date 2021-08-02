@@ -1,32 +1,42 @@
 package NewProject;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import java.io.*;
 
 public class Serialization {
+    private static FileWriter file;
+
     public static void main(String[] args) throws IOException {
-        try (FileOutputStream fs = new FileOutputStream("cat.txt")) {
-            ObjectOutputStream os = new ObjectOutputStream(fs);
-            Cat cat = new Cat("Dori", 5, "Seem", "brown");
-            Cat cat1 = new Cat("Mee", 5, "Frees", "white");
-            Cat cat2 = new Cat("Mo", 4, "Yt", "blue");
-            String jsonResult = new ObjectMapper().writeValueAsString(cat);
-            String jsonResult1 = new ObjectMapper().writeValueAsString(cat1);
-            String jsonResult2 = new ObjectMapper().writeValueAsString(cat2);
-            os.writeObject(jsonResult);
-            os.writeObject(jsonResult1);
-            os.writeObject(jsonResult2);
-            os.close();
-            fs.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        JSONObject car = new JSONObject();
+        car.put("Model", "Volvo");
+        car.put("Model", "BMW");
+        car.put("Model", "Fiat");
+
+        JSONArray store = new JSONArray();
+        store.add("Store: Sofia");
+        store.add("Store: Plovdiv");
+        store.add("Store: Varna");
+        store.add("Store: Veliko Tarnovo");
+        car.put("Cars list", store);
+
+        try {
+            file = new FileWriter("car.txt");
+            file.write(car.toJSONString());
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                file.flush();
+                file.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }
-
 }
 
 
