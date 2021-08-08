@@ -10,29 +10,29 @@ public class Serialization {
     private static FileWriter file;
 
     public static void main(String[] args) throws IOException {
-        JSONObject car = new JSONObject();
-        car.put("Model", "Volvo");
-        car.put("Model1", "BMW");
-        car.put("Model2", "Fiat");
+        JSONObject car1 = new JSONObject();
+        car1.put("Model", "Volvo");
+        car1.put("Store", "Varna");
+        car1.put("Year", "2020");
 
-        JSONObject carObject = new JSONObject();
-        carObject.put("Model",car);
+        JSONObject carObject1 = new JSONObject();
+        carObject1.put("List",car1);
 
-        JSONObject store = new JSONObject();
-        store.put("Store","Sofia");
-        store.put("Store1","Plovdiv");
-        store.put("Store2","Varna");
+        JSONObject car2 = new JSONObject();
+        car2.put("Model","Fiat");
+        car2.put("Store","Plovdiv");
+        car2.put("Year","2020");
 
-        JSONObject storeObject = new JSONObject();
-        store.put("Store",storeObject);
+       JSONObject carObject2 = new JSONObject();
+        carObject2.put("List",car2);
 
         JSONArray stores = new JSONArray();
-        stores.add(carObject);
-        stores.add(storeObject);
+        stores.add(carObject1);
+        stores.add(carObject2);
 
 
         try {
-            file = new FileWriter("car.json");
+            file = new FileWriter("car1.json");
             file.write(stores.toJSONString());
             file.flush();
         } catch (IOException e) {
